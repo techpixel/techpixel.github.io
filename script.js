@@ -1,3 +1,6 @@
+// script from https://codepen.io/Tibixx/pen/xmOaWe
+// slightly edited
+
 var canvas = document.getElementById("canvas"); //get canvas element
 var ctx = canvas.getContext("2d"); //get canvas context
 var bgg = document.getElementById("bg_glow"); // get bg glow effect
@@ -115,4 +118,7 @@ function render() { // render each dot to create an effect
 };
 
 bgg.style.background = "radial-gradient(ellipse at center, hsla(" + hue + ",50%,50%,.8) 0%,rgba(0,0,0,0) 100%)";
+
 render();
+
+
