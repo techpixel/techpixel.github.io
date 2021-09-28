@@ -1,3 +1,12 @@
+// mouse script
+
+var pointerX = 0;
+var pointerY = 0;
+document.onmousemove = function(event) {
+	pointerX = event.pageX;
+	pointerY = event.pageY;
+}
+
 // script from https://codepen.io/Tibixx/pen/xmOaWe
 // slightly edited
 
@@ -37,8 +46,8 @@ maxHeight = h * .9
 minHeight = h * .5;
 maxSpeed = 35;
 minSpeed = 6;
-hue = 130;
-hueDif = 50; // Hue +/-
+hue = Math.floor(Math.random() * 255);
+hueDif = 20; // Hue +/-
 glow = 10; // Set to 0 for better performance
 ctx.globalCompositeOperation = "lighter";
 
@@ -57,7 +66,7 @@ function pushDots(num) { // add dots
     for (var i = 1; i < md; i++) {
         dots.push({
             x: Math.random() * w,
-            y: Math.random() * h / 2,
+            y: Math.random() * h / 2 - 50,
             h: Math.random() * (maxHeight - minHeight) + minHeight,
             w: Math.random() * (maxWidth - minWidth) + minWidth,
             c: Math.random() * ((hue + hueDif) - (hue - hueDif)) + (hue - hueDif),
@@ -97,7 +106,7 @@ function render() { // render each dot to create an effect
         ctx.fillRect(dots[i].x, dots[i].y, dots[i].w, dots[i].h); //create rect
         ctx.closePath(); //end line draw
 
-        dots[i].x += dots[i].m / 100; //apply moving effect
+        dots[i].x += (dots[i].m + ((w/2)-pointerX)/5) / 100
 
         //replace dots moving out of view
 
@@ -105,6 +114,16 @@ function render() { // render each dot to create an effect
             dots.splice(i, 1);
             dots.push({
                 x: 0,
+                y: Math.random() * h,
+                h: Math.random() * (maxHeight - minHeight) + minHeight,
+                w: Math.random() * (maxWidth - minWidth) + minWidth,
+                c: Math.random() * ((hue + hueDif) - (hue - hueDif)) + (hue - hueDif),
+                m: Math.random() * (maxSpeed - minSpeed) + minSpeed
+            });
+        } else if (dots[i].x < 0) {
+            dots.splice(i, 1);
+            dots.push({
+                x: (w + maxWidth - 1),
                 y: Math.random() * h,
                 h: Math.random() * (maxHeight - minHeight) + minHeight,
                 w: Math.random() * (maxWidth - minWidth) + minWidth,
