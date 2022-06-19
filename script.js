@@ -138,6 +138,8 @@ function render() { // render each dot to create an effect
 
 bgg.style.background = "radial-gradient(ellipse at center, hsla(" + hue + ",50%,50%,.8) 0%,rgba(0,0,0,0) 100%)";
 
+$('a').css('color', "hsla(" + hue + ",50%,50%,.8)")
+
 render();
 
 
