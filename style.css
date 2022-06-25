@@ -53,15 +53,24 @@ html, body {
 }
 
 #info {
-    background-color: white;
-    width: 30%;
+    /* Position & Centering */
+    width: 40%;
     margin: auto;
     position: absolute;
-    left: 35%;
+    left: 30%;
     top: 50%;
     transform: translate(0, -50%);
     padding: 10px;
+
+    /* Glass Effect */
+    background-color: rgba(255, 255, 255, .85);
+    backdrop-filter: blur(5px);
+
+    /* Shadow */
     box-shadow: 0 0 10px black;
+
+    /* Border */
+    border-radius: 5px;
 }
 
 h1, h2, h3, h4, p, a {
